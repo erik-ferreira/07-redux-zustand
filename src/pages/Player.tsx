@@ -1,10 +1,14 @@
 import { ChatCircle } from "phosphor-react"
 
+import { useAppSelector } from "../store"
+
 import { Video } from "../components/Video"
 import { Header } from "../components/Header"
 import { Module } from "../components/Module"
 
 export function Player() {
+  const modules = useAppSelector((state) => state.player.course.modules)
+
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex items-center justify-center">
       <div className="flex w-[1100px] flex-col gap-6">
@@ -23,21 +27,14 @@ export function Player() {
           </div>
 
           <aside className="w-80 border-l border-zinc-800 divide-y-2 divide-zinc-900 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-900">
-            <Module
-              moduleIndex={1}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
-            <Module
-              moduleIndex={2}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
-            <Module
-              moduleIndex={3}
-              title="Desvendando o Redux"
-              amountOfLessons={3}
-            />
+            {modules.map((module, index) => (
+              <Module
+                key={module.id}
+                moduleIndex={index}
+                title={module.title}
+                amountOfLessons={module.lessons.length}
+              />
+            ))}
           </aside>
         </main>
       </div>
