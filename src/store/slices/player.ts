@@ -61,6 +61,7 @@ const playerSlice = createSlice({
     },
     currentModuleIndex: 0,
     currentLessonIndex: 0,
+    isAutoPlaying: false,
   },
 
   reducers: {
@@ -86,11 +87,15 @@ const playerSlice = createSlice({
         }
       }
     },
+
+    toggleAutoplay: (state) => {
+      state.isAutoPlaying = !state.isAutoPlaying
+    },
   },
 })
 
 export const player = playerSlice.reducer
-export const { play, next } = playerSlice.actions
+export const { play, next, toggleAutoplay } = playerSlice.actions
 
 export const useCurrentLesson = () => {
   return useAppSelector((state) => {

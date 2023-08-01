@@ -7,6 +7,7 @@ import { useCurrentLesson } from "../store/slices/player"
 import { Video } from "../components/Video"
 import { Header } from "../components/Header"
 import { Module } from "../components/Module"
+import { Autoplay } from "../components/Autoplay"
 
 export function Player() {
   const modules = useAppSelector((state) => state.player.course.modules)
@@ -22,10 +23,14 @@ export function Player() {
         <div className="flex items-center justify-between">
           <Header />
 
-          <button className="flex items-center gap-2 rounded bg-violet-500 px-3 py-2 text-sm font-medium text-white hover:bg-violet-600">
-            <ChatCircle className="w-4 h-4" />
-            Deixar feedback
-          </button>
+          <div className="flex items-center gap-4">
+            <Autoplay />
+
+            <button className="flex items-center gap-2 rounded bg-violet-500 px-3 py-2 text-sm font-medium text-white hover:bg-violet-600">
+              <ChatCircle className="w-4 h-4" />
+              Deixar feedback
+            </button>
+          </div>
         </div>
 
         <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80">
