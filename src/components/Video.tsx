@@ -1,11 +1,10 @@
 import ReactPlayer from "react-player"
-import { useDispatch } from "react-redux"
 
-import { useAppSelector } from "../store"
+import { useAppDispatch, useAppSelector } from "../store"
 import { next, useCurrentLesson } from "../store/slices/player"
 
 export function Video() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { currentLesson } = useCurrentLesson()
   const isAutoPlaying = useAppSelector((state) => state.player.isAutoPlaying)
 

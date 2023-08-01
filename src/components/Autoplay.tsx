@@ -1,11 +1,10 @@
-import { useDispatch } from "react-redux"
 import * as Switch from "@radix-ui/react-switch"
 
-import { useAppSelector } from "../store"
 import { toggleAutoplay } from "../store/slices/player"
+import { useAppDispatch, useAppSelector } from "../store"
 
 export function Autoplay() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const isAutoPlaying = useAppSelector((state) => state.player.isAutoPlaying)
 
   return (

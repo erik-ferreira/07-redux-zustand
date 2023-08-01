@@ -1,10 +1,9 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
 import { ChatCircle } from "phosphor-react"
 
 import { api } from "../lib/api"
-import { useAppSelector } from "../store"
-import { start, useCurrentLesson } from "../store/slices/player"
+import { useAppDispatch, useAppSelector } from "../store"
+import { useCurrentLesson, loadCourse } from "../store/slices/player"
 
 import { Video } from "../components/Video"
 import { Header } from "../components/Header"
@@ -12,7 +11,7 @@ import { Module } from "../components/Module"
 import { Autoplay } from "../components/Autoplay"
 
 export function Player() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const modules = useAppSelector((state) => state.player.course?.modules)
   const { currentLesson } = useCurrentLesson()
 
@@ -23,9 +22,7 @@ export function Player() {
   }, [currentLesson])
 
   useEffect(() => {
-    api.get("/courses/1").then((response) => {
-      dispatch(start(response.data))
-    })
+    dispatch(loadCourse())
   }, [])
 
   return (
