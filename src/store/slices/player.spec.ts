@@ -31,6 +31,7 @@ const exampleState: PlayerState = {
       },
     ],
   },
+  isLoadingCourse: false,
   currentModuleIndex: 0,
   currentLessonIndex: 0,
   isAutoPlaying: false,

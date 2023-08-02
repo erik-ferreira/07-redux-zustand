@@ -18,6 +18,7 @@ interface Course {
 
 export interface PlayerState {
   course: Course | null
+  isLoadingCourse: boolean
   currentModuleIndex: number
   currentLessonIndex: number
   isAutoPlaying: boolean
@@ -25,13 +26,14 @@ export interface PlayerState {
 
 const initialState: PlayerState = {
   course: null,
+  isLoadingCourse: true,
   currentModuleIndex: 0,
   currentLessonIndex: 0,
   isAutoPlaying: false,
 }
 
 export const loadCourse = createAsyncThunk("player/load", async () => {
-  const response = await api.get("courses/1")
+  const response = await api.get("/courses/1")
 
   return response.data
 })
@@ -70,8 +72,13 @@ const playerSlice = createSlice({
   },
 
   extraReducers(builder) {
+    builder.addCase(loadCourse.pending, (state) => {
+      state.isLoadingCourse = true
+    })
+
     builder.addCase(loadCourse.fulfilled, (state, action) => {
       state.course = action.payload
+      state.isLoadingCourse = false
     })
   },
 })
