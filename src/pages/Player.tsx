@@ -31,7 +31,7 @@ export function Player() {
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex items-center justify-center">
-      <div className="flex w-[1100px] flex-col gap-6">
+      <div className="flex w-[1200px] flex-col gap-6">
         <div className="flex items-center justify-between">
           <Header />
 
@@ -50,7 +50,7 @@ export function Player() {
             <Video />
           </div>
 
-          <aside className="w-80 border-l border-zinc-800 divide-y-2 divide-zinc-900 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-900">
+          <aside className="w-96 border-l border-zinc-800 divide-y-2 divide-zinc-900 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-900">
             {isLoadingCourse ? (
               <>
                 <ModuleSkeleton defaultOpen />

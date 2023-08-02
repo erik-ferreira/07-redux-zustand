@@ -5,59 +5,63 @@
       "modules": [
         {
           "id": 1,
-          "title": "Iniciando com React",
+          "title": "ReactJS",
           "lessons": [
             {
-              "id": "Jai8w6K_GnY",
-              "title": "CSS Modules",
-              "duration": "13:45"
+              "id": "0zl72thBKzo",
+              "title": "Tudo que você precisa saber sobre Next 13",
+              "duration": "01:09:50"
             },
             {
-              "id": "w-DW4DhDfcw",
-              "title": "Estilização do Post",
-              "duration": "10:05"
+              "id": "EbFA4RQrc0w",
+              "title": "Você não usa Tailwind por esse motivo?",
+              "duration": "15:44"
             },
             {
-              "id": "D83-55LUdKE",
-              "title": "Componente: Header",
-              "duration": "06:33"
+              "id": "3KSxzW8x5pA",
+              "title": "Server Components no React",
+              "duration": "25:27"
             },
             {
-              "id": "W_ATsETujaY",
-              "title": "Componente: Sidebar",
-              "duration": "09:12"
+              "id": "Znz2QXpJTXQ",
+              "title": "Como eu tô usando o GPT",
+              "duration": "30:36"
             },
-            { "id": "Pj8dPeameYo", "title": "CSS Global", "duration": "03:23" },
             {
-              "id": "8KBq2vhwbac",
-              "title": "Form de comentários",
-              "duration": "11:34"
+              "id": "isn44MT-aIQ",
+              "title": "ChatGPT(e outras IAs)",
+              "duration": "15:51"
+            },
+            {
+              "id": "cbSHUVSUFgY",
+              "title": "Como deixar seu código igual ao meu",
+              "duration": "10:01"
             }
           ]
         },
         {
           "id": 2,
-          "title": "Estrutura da aplicação",
+          "title": "React Native",
           "lessons": [
             {
-              "id": "gE48FQXRZ_o",
-              "title": "Componente: Comment",
-              "duration": "13:45"
+              "id": "DUGomTDVpwc",
+              "title": "Feature Flag com configcat no React Native",
+              "duration": "27:28"
             },
             {
-              "id": "Ng_Vk4tBl0g",
-              "title": "Responsividade",
-              "duration": "10:05"
+              "id": "8dkwk6d8vdY",
+              "title": "Autenticação local com BIOMETRIA no React Native",
+              "duration": "36:10"
             },
             {
-              "id": "h5JA3wfuW1k",
-              "title": "Interações no JSX",
-              "duration": "06:33"
+              "id": "oHqA9H9qmtc",
+              "title": "ChatGPT e IA de Voz",
+              "duration": "14:49"
             },
             {
-              "id": "1G0vSTqWELg",
-              "title": "Utilizando estado",
-              "duration": "09:12"
+              "id": "XLILd0R8btg",
+              "title": "Descomplicando as funções de áudio no seu app com Expo Av",
+              "duration": "25:40"
             }
           ]
         }
