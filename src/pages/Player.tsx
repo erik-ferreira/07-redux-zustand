@@ -1,8 +1,7 @@
 import { useEffect } from "react"
 import { ChatCircle } from "phosphor-react"
 
-import { useAppDispatch, useAppSelector } from "../store"
-import { useCurrentLesson, loadCourse } from "../store/slices/player"
+import { useCurrentLesson, useStore } from "../zustand-store"
 
 import { Video } from "../components/Video"
 import { Header } from "../components/Header"
@@ -11,14 +10,14 @@ import { Autoplay } from "../components/Autoplay"
 import { ModuleSkeleton } from "../components/Module/Skeleton"
 
 export function Player() {
-  const dispatch = useAppDispatch()
-  const { currentLesson } = useCurrentLesson()
-  const { modules, isLoadingCourse } = useAppSelector((state) => {
-    const modules = state.player.course?.modules
-    const { isLoadingCourse } = state.player
-
-    return { modules, isLoadingCourse }
+  const { course, isLoadingCourse, load } = useStore((state) => {
+    return {
+      course: state.course,
+      isLoadingCourse: state.isLoadingCourse,
+      load: state.load,
+    }
   })
+  const { currentLesson } = useCurrentLesson()
 
   useEffect(() => {
     if (currentLesson) {
@@ -27,7 +26,7 @@ export function Player() {
   }, [currentLesson])
 
   useEffect(() => {
-    dispatch(loadCourse())
+    load()
   }, [])
 
   return (
@@ -59,8 +58,8 @@ export function Player() {
                 <ModuleSkeleton />
               </>
             ) : (
-              modules &&
-              modules.map((module, index) => (
+              course?.modules &&
+              course?.modules.map((module, index) => (
                 <Module
                   key={module.id}
                   moduleIndex={index}

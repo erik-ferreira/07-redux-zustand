@@ -1,5 +1,7 @@
 import { create } from "zustand"
 
+import { api } from "../lib/api"
+
 interface Course {
   id: number
   modules: Array<{
@@ -20,6 +22,7 @@ export interface PlayerState {
   currentLessonIndex: number
   isAutoPlaying: boolean
 
+  load: () => Promise<void>
   play: (moduleAndLessonIndex: [number, number]) => void
   next: () => void
   toggleAutoplay: () => void
@@ -32,6 +35,14 @@ export const useStore = create<PlayerState>((set, get) => {
     currentModuleIndex: 0,
     currentLessonIndex: 0,
     isAutoPlaying: false,
+
+    load: async () => {
+      set({ isLoadingCourse: true })
+
+      const response = await api.get("/courses/1")
+
+      set({ isLoadingCourse: false, course: response.data })
+    },
 
     play: (moduleAndLessonIndex: [number, number]) => {
       const [moduleIndex, lessonIndex] = moduleAndLessonIndex
@@ -75,3 +86,14 @@ export const useStore = create<PlayerState>((set, get) => {
     },
   }
 })
+
+export const useCurrentLesson = () => {
+  return useStore((state) => {
+    const { currentModuleIndex, currentLessonIndex } = state
+
+    const currentModule = state.course?.modules[currentModuleIndex]
+    const currentLesson = currentModule?.lessons[currentLessonIndex]
+
+    return { currentModule, currentLesson }
+  })
+}

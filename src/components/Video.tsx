@@ -1,20 +1,20 @@
 import ReactPlayer from "react-player"
 import { CircleNotch } from "phosphor-react"
 
-import { useAppDispatch, useAppSelector } from "../store"
-import { next, useCurrentLesson } from "../store/slices/player"
+import { useCurrentLesson, useStore } from "../zustand-store"
 
 export function Video() {
-  const dispatch = useAppDispatch()
   const { currentLesson } = useCurrentLesson()
-  const { isAutoPlaying, isLoadingCourse } = useAppSelector((state) => {
-    const { isAutoPlaying, isLoadingCourse } = state.player
-
-    return { isAutoPlaying, isLoadingCourse }
+  const { isAutoPlaying, isLoadingCourse, next } = useStore((state) => {
+    return {
+      isAutoPlaying: state.isAutoPlaying,
+      isLoadingCourse: state.isLoadingCourse,
+      next: state.next,
+    }
   })
 
   function handlePlayNext() {
-    dispatch(next())
+    next()
   }
 
   return (

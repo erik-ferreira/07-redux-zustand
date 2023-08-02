@@ -1,8 +1,7 @@
 import { CaretDown } from "phosphor-react"
 import * as Collapsible from "@radix-ui/react-collapsible"
 
-import { play } from "../../store/slices/player"
-import { useAppDispatch, useAppSelector } from "../../store"
+import { useStore } from "../../zustand-store"
 
 import { Lesson } from "../Lesson"
 
@@ -13,21 +12,16 @@ interface ModuleProps {
 }
 
 export function Module({ moduleIndex, title, amountOfLessons }: ModuleProps) {
-  const dispatch = useAppDispatch()
-
-  const { lessons, currentModuleIndex, currentLessonIndex, isLoadingCourse } =
-    useAppSelector((state) => {
-      const { currentModuleIndex, currentLessonIndex, isLoadingCourse } =
-        state.player
-      const lessons = state.player.course?.modules[moduleIndex].lessons
-
+  const { currentModuleIndex, currentLessonIndex, play, lessons } = useStore(
+    (state) => {
       return {
-        lessons,
-        currentModuleIndex,
-        currentLessonIndex,
-        isLoadingCourse,
+        currentModuleIndex: state.currentModuleIndex,
+        currentLessonIndex: state.currentLessonIndex,
+        play: state.play,
+        lessons: state.course?.modules[moduleIndex].lessons,
       }
-    })
+    }
+  )
 
   return (
     <Collapsible.Root className="group" defaultOpen={moduleIndex === 0}>
@@ -57,7 +51,7 @@ export function Module({ moduleIndex, title, amountOfLessons }: ModuleProps) {
                   key={lesson.id}
                   title={lesson.title}
                   duration={lesson.duration}
-                  onPlay={() => dispatch(play([moduleIndex, lessonIndex]))}
+                  onPlay={() => play([moduleIndex, lessonIndex])}
                   isCurrent={isCurrent}
                 />
               )
