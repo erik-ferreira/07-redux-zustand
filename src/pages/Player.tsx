@@ -45,7 +45,7 @@ export function Player() {
           </div>
         </div>
 
-        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80">
+        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-96">
           <div className="flex-1">
             <Video />
           </div>
