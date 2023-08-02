@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { ChatCircle } from "phosphor-react"
 
-import { api } from "../lib/api"
 import { useAppDispatch, useAppSelector } from "../store"
 import { useCurrentLesson, loadCourse } from "../store/slices/player"
 
@@ -9,11 +8,17 @@ import { Video } from "../components/Video"
 import { Header } from "../components/Header"
 import { Module } from "../components/Module"
 import { Autoplay } from "../components/Autoplay"
+import { ModuleSkeleton } from "../components/Module/Skeleton"
 
 export function Player() {
   const dispatch = useAppDispatch()
-  const modules = useAppSelector((state) => state.player.course?.modules)
   const { currentLesson } = useCurrentLesson()
+  const { modules, isLoadingCourse } = useAppSelector((state) => {
+    const modules = state.player.course?.modules
+    const { isLoadingCourse } = state.player
+
+    return { modules, isLoadingCourse }
+  })
 
   useEffect(() => {
     if (currentLesson) {
@@ -47,7 +52,14 @@ export function Player() {
           </div>
 
           <aside className="w-80 border-l border-zinc-800 divide-y-2 divide-zinc-900 bg-zinc-900 overflow-y-scroll absolute top-0 bottom-0 right-0 scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-900">
-            {modules &&
+            {isLoadingCourse ? (
+              <>
+                <ModuleSkeleton defaultOpen />
+                <ModuleSkeleton />
+                <ModuleSkeleton />
+              </>
+            ) : (
+              modules &&
               modules.map((module, index) => (
                 <Module
                   key={module.id}
@@ -55,7 +67,8 @@ export function Player() {
                   title={module.title}
                   amountOfLessons={module.lessons.length}
                 />
-              ))}
+              ))
+            )}
           </aside>
         </main>
       </div>
